@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import { calculateExpression } from '../api/calculateExpression'
 import { inputTextAction } from '../actions/inputTextAction'
+import { addExpressionOnHistory } from '../api/addExpressionOnHistory'
 
 
 export default function EqualComponent(){
@@ -10,7 +11,7 @@ export default function EqualComponent(){
         try{
             const resultExpression = await calculateExpression()
             localStorage.setItem('result', resultExpression)
-
+            addExpressionOnHistory()
             inputTextAction(resultExpression)
         }catch(err){
             console.error(err)
