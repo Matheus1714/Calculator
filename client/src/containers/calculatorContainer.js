@@ -1,20 +1,23 @@
 import React from "react"
 import CalculatorComponent from '../components/calculatorComponent'
 import { setExpressionAction } from '../actions/setExpressionAction'
+import { getHistoryOfExpression } from '../api/getHistoryOfExpressions'
+import { setBoolAction } from '../actions/setBoolAction'
 
 export default class CalculatorContainer extends React.Component{
     constructor(){
         super()
         this.state={
-            expression:""
+            historyOperations:[]
         }
     }
     async componentDidMount(){
         try{
             setExpressionAction()
-            const expression = localStorage.getItem('expression')
+            setBoolAction()
+            const historyOperations = await getHistoryOfExpression()
             this.setState({
-                expression
+                historyOperations
             })
         }catch(err){
             console.error(err)
@@ -23,7 +26,7 @@ export default class CalculatorContainer extends React.Component{
     render(){
         return(
             <div>
-                <CalculatorComponent />
+                <CalculatorComponent historyOperations={this.state.historyOperations} />
             </div>
         )
     }
