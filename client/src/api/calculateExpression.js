@@ -1,7 +1,7 @@
 export async function calculateExpression(){
     try{
         const expression = localStorage.getItem('expression')
-        const response = await fetch('http://localhost:8080/result', {
+        const response = await fetch('http://localhost:8000/result', {
             mode: 'cors',
             method: 'POST',
             headers: {
