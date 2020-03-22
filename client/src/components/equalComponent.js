@@ -1,7 +1,8 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
 import { calculateExpression } from '../api/calculateExpression'
+import { inputTextAction } from '../actions/inputTextAction'
 
 
 export default function EqualComponent(){
@@ -9,6 +10,8 @@ export default function EqualComponent(){
         try{
             const resultExpression = await calculateExpression()
             localStorage.setItem('result', resultExpression)
+
+            inputTextAction(resultExpression)
         }catch(err){
             console.error(err)
         }
