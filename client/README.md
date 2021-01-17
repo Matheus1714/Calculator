@@ -1,4 +1,4 @@
-![calc image](../img/logo.png)
+![calc image](../img/logo.PNG)
 
 # Calculator
 
